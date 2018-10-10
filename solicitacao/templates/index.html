@@ -8,10 +8,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
         <script src="main.js"></script>
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+        <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+        <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+
     </head>
 
     <body>
-        <h1>App: Solicitação de Motoboy.</h1>
+        <h1>Index do app Solicitação de Motoboy</h1>
+
+        {% block content %}
+        <h2>Lista de cadastros</h2>
+
+        {% for cadastro in cadastros %}
+        <p>{{cadastro.nome}}</p>
+        {% endfor %}
+
+        <h2>Lista de solicitações</h2>
+        {% for solicitacao in solicitacoes %}
+        <p>{{ solicitacao.solicitante }}</p>
+        {% endfor %}
+        {% endblock content %}
+
+
+
     </body>
 
 </html>
