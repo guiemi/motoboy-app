@@ -1,9 +1,18 @@
 from django.shortcuts import render
 from .forms import EmpresaForm, MotoboyForm
+from solicitacao.models import Empresa, Solicitacao
 
 
 def index(request):
-    return render(request, 'index.html', {})
+    cadastros = Empresa.objects.all()
+    solicitacoes = Solicitacao.objects.all()
+
+    return render(request, 'index.html', {
+        'cadastros': cadastros,
+        'solicitacoes': solicitacoes,
+    })
+
+
 
 
 def cadastro_empresa(request):
