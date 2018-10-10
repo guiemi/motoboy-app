@@ -18,6 +18,11 @@ def cadastro_empresa(request):
 
 
 def solicitacao_motoboy(request):
-    form = MotoboyForm
+    if request.method == 'POST':
+        form = MotoboyForm(request.POST)
+        form.save()
+    else:
+        form = MotoboyForm()
+
     context = {"form": form}
     return render(request, 'solicitacao_motoboy.html', context)
