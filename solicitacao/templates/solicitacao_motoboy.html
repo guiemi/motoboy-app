@@ -6,21 +6,27 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Page Title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-        <script src="main.js"></script>
+
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+        <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+        <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+
     </head>
 
     <body>
         <h1>Solicitação de Motoboy</h1>
-        <div>
-            <form method="POST">
-                {% csrf_token %}
-                {% for field in form %}
-                <p>{{ field.label }}: {{ field }}</p>
-                {% endfor %}
-
-                <input type="submit" value="Solicitar">
-            </form>
+        <div class="container">
+            <div class="row">
+                <div class="column">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <p>{{ field.label }}: {{ field }}</p>
+                        {% endfor %}
+                        <input type="submit" value="Solicitar">
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 
