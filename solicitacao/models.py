@@ -15,7 +15,3 @@ class Solicitacao(models.Model):
     endereco_destino = models.CharField(max_length=30)
     contato_destino = models.CharField(max_length=30)
     observacoes = models.TextField()
-
-    # Cria um método de classe que escreve alterações no db.
-    def save(self):
-        self.save()
