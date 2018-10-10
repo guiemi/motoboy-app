@@ -7,8 +7,8 @@ class Empresa(models.Model):
 
 
 class Solicitacao(models.Model):
-    solicitante = models.CharField(max_length=30)
     data = models.DateField()
+    solicitante = models.CharField(max_length=30)
     endereco_origem = models.CharField(max_length=50)
     contato_origem = models.CharField(max_length=30)
     servico = models.TextField()
