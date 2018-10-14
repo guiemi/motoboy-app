@@ -9,3 +9,4 @@ temp1.csv
 temp2.csv
 Temp*
 celerybeat-schedule
+*.vscode
