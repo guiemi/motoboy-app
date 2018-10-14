@@ -19,7 +19,7 @@ from solicitacao import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
+    path('', views.index),
     path('cadastro_empresa/', views.cadastro_empresa),
     path('solicitacao_motoboy/', views.solicitacao_motoboy),
 ]
