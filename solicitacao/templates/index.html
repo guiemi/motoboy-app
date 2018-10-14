@@ -1,37 +1,57 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Index</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-        <script src="main.js"></script>
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-        <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
-        <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
 
-    </head>
+<body>
+    <nav class="navbar navbar-inverse navbar-expand-sm">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a class="nav-link" href="">Home</a>
+                </li>
 
-    <body>
-        <h1>Index do app Solicitação de Motoboy</h1>
+                <li class="nav-item">
+                    <a class="nav-link" href="cadastro_empresa">Cadastrar empresa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link 3</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-        {% block content %}
-        <h2>Lista de cadastros</h2>
+    {% block container %}
 
-        {% for cadastro in cadastros %}
-        <p>{{cadastro.nome}}</p>
-        {% endfor %}
+    <h1 class="text-center" "border border-primary">Solicitação de Motoboy (INDEX)</h1>
 
-        <h2>Lista de solicitações</h2>
-        {% for solicitacao in solicitacoes %}
-        <p>{{ solicitacao.solicitante }}</p>
-        {% endfor %}
-        {% endblock content %}
+    <div class="container">
+        <div class="jumbotron">
+            <h2>Lista de cadastros</h2>
 
+            {% for cadastro in cadastros %}
+            <p>{{cadastro.nome}}</p>
+            {% endfor %}
 
+            <h2>Lista de solicitações</h2>
+            {% for solicitacao in solicitacoes %}
+            <p>{{ solicitacao.solicitante }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock container %}
 
-    </body>
+</body>
 
 </html>
