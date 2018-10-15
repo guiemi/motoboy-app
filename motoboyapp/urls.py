@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from solicitacao import views
 
+app_name = 'solicitacao'
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name=''),
+    path('', views.index, name='index'),
     path('cadastro_empresa/', views.cadastro_empresa, name='cadastro_empresa'),
     path('solicitacao_motoboy/', views.solicitacao_motoboy, name='solicitacao_motoboy'),
+    path('<int:pk>/detalhes_solicitacao', views.detalhes_solicitacao, name='detalhes_solicitacao'),
 ]
