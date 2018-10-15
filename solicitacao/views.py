@@ -41,4 +41,5 @@ def solicitacao_motoboy(request):
 
 
 def detalhes_solicitacao(request, pk):
-    return HttpResponse(f'Teste de PK: {pk}')
+    context = {"pk": pk}
+    return render(request, 'detalhes_solicitacao.html', context)
