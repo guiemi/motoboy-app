@@ -13,7 +13,7 @@
 
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="index"><img src="http://www.vertcap.com.br/wp-content/uploads/2016/08/logo-vert-white.png" alt=""></a>
+    <a class="navbar-brand" href="/"><img src="http://www.vertcap.com.br/wp-content/uploads/2016/08/logo-vert-white.png" alt=""></a>
     <div class="container-fluid">
         <ul class="nav navbar-nav">
             <li class="active">
@@ -43,7 +43,7 @@
         <div class="jumbotron">
             <h2>Solicitações Realizadas</h2>
             {% for solicitacao in solicitacoes %}
-            <p><a href="#">{{ solicitacao.solicitante }}</a></p>
+            <p><a href= "{% url 'detalhes_solicitacao' pk=solicitacao.pk %}" >{{ solicitacao.solicitante }}</a></p>
             {% endfor %}
         </div>
     </div>
