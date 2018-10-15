@@ -41,4 +41,4 @@ def solicitacao_motoboy(request):
 
 
 def detalhes_solicitacao(request, pk):
-    return HttpResponse('Teste de PK: {pk}')
+    return HttpResponse(f'Teste de PK: {pk}')
