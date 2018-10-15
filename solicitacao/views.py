@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import EmpresaForm, MotoboyForm
 from solicitacao.models import Empresa, Solicitacao
+from django.http import HttpResponseRedirect
 
 
 def index(request):
@@ -13,12 +14,12 @@ def index(request):
     })
 
 
-
-
 def cadastro_empresa(request):
     if request.method == 'POST':
         form = EmpresaForm(request.POST)
-        form.save()
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/")
     else:
         form = EmpresaForm()
 
@@ -29,7 +30,9 @@ def cadastro_empresa(request):
 def solicitacao_motoboy(request):
     if request.method == 'POST':
         form = MotoboyForm(request.POST)
-        form.save()
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/")
     else:
         form = MotoboyForm()
 
