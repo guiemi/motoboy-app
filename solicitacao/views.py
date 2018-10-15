@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import EmpresaForm, MotoboyForm
 from solicitacao.models import Empresa, Solicitacao
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 
 def index(request):
@@ -38,3 +38,7 @@ def solicitacao_motoboy(request):
 
     context = {"form": form}
     return render(request, 'solicitacao_motoboy.html', context)
+
+
+def detalhes_solicitacao(request, pk):
+    return HttpResponse('Teste de PK: {pk}')
