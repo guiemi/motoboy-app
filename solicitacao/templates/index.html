@@ -30,19 +30,20 @@
 </nav>
     {% block container %}
 
-    <h1 class="text-center" "border border-primary">Solicitação de Motoboy (Index)</h1>
+    <h1 class="text-center" "border border-primary">Solicitação de Motoboy</h1>
 
     <div class="container">
         <div class="jumbotron">
-            <h2>Lista de cadastros</h2>
+            <h2>Empresas cadastradas</h2>
 
             {% for cadastro in cadastros %}
-            <p>{{cadastro.nome}}</p>
+            <p>{{cadastro.nome}}: {{ cadastro.cnpj }} </p>
             {% endfor %}
-
-            <h2>Lista de solicitações</h2>
+        </div>
+        <div class="jumbotron">
+            <h2>Solicitações Realizadas</h2>
             {% for solicitacao in solicitacoes %}
-            <p>{{ solicitacao.solicitante }}</p>
+            <p><a href="#">{{ solicitacao.solicitante }}</a></p>
             {% endfor %}
         </div>
     </div>
