@@ -42,7 +42,7 @@ def solicitacao_motoboy(request):
 
 def detalhes_solicitacao(request, pk):
     detalhes = Solicitacao.objects.get(pk=pk)
-    context = {"pk": pk}
-    
-    return render(request, 'detalhes_solicitacao.html', context, {'detalhes': detalhes})
 
+    return render(request, 'detalhes_solicitacao.html', {
+        'detalhes': detalhes,
+    })
