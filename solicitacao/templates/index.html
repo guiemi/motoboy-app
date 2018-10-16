@@ -1,55 +1,101 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Index</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-</head>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Index</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" href="/"><img src="http://www.vertcap.com.br/wp-content/uploads/2016/08/logo-vert-white.png"
-                alt=""></a>
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/cadastro_empresa">Cadastrar Empresa</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/solicitacao_motoboy">Solicitar Motoboy</a>
-                </li>
-            </ul>
+
+
+        <style>
+            .btn-acao:hover {
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <img src="http://www.vertcap.com.br/wp-content/uploads/2016/08/logo-vert-white.png" alt="">
+            <div class="container-fluid">
+                <!-- Itens à esquerda -->
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cadastro_empresa">Cadastrar Empresa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/solicitacao_motoboy">Solicitar Motoboy</a>
+                    </li>
+                </ul>
+
+                <!-- Itens à direita -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sobre">Sobre</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+        {% block container %}
+
+        <h1 class="text-center" "border border-primary">Solicitação de Motoboy</h1>
+
+        <div class="container">
+            <h2>Empresas cadastradas</h2>
+            <div class="jumbotron">
+                <table>
+                    <thead>
+                        <th>Nome</th>
+                        <th>CNPJ</th>
+                        <th>Ações</th>
+                    </thead>
+                    <tbody>
+                        {% for cadastro in cadastros %}
+                        <tr>
+                            <td>{{ cadastro.nome }}</td>
+                            <td>{{ cadastro.cnpj }}</td>
+                            <td> <span id="btn-edit" class="btn-acao" value="{{ cadastro.pk }}">Editar</span> 
+                                <span id="btn-delete" class="btn-acao" value="{{ cadastro.pk }}">Deletar</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <h2>Solicitações Realizadas</h2>
+            <div class="jumbotron">
+                {% for solicitacao in solicitacoes %}
+                <p> Solicitante: <a href="{% url 'detalhes_solicitacao' pk=solicitacao.pk %}">{{solicitacao.solicitante}}</a></p>
+                {% endfor %}
+            </div>
         </div>
-    </nav>
-    {% block container %}
+        {% endblock container %}
 
-    <h1 class="text-center" "border border-primary">Solicitação de Motoboy</h1>
+        <!-- JQuery -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
 
-    <div class="container">
-        <h2>Empresas cadastradas</h2>
-        <div class="jumbotron">
+        <script>
+            $("span" + "#btn-edit").click(function () {
+                var id_empresa = $(this).attr("value");
+                window.location.pathname = "/editar_empresa/" + id_empresa;
 
-            {% for cadastro in cadastros %}
-            <p>{{ cadastro.nome }}: {{ cadastro.cnpj }} </p>
-            {% endfor %}
-        </div>
-        <h2>Solicitações Realizadas</h2>
-        <div class="jumbotron">
-            {% for solicitacao in solicitacoes %}
-            <p> Solicitante: <a href="{% url 'detalhes_solicitacao' pk=solicitacao.pk %}">{{ solicitacao.solicitante }}</a></p>
-            {% endfor %}
-        </div>
-    </div>
-    {% endblock container %}
+            });
 
-</body>
+            $("span" + "#btn-delete").click(function () {
+                var id_empresa = $(this).attr("value");
+                window.location.pathname = "deletar_cadastro/" + id_empresa;
+            });
+        </script>
+    </body>
 
 </html>
