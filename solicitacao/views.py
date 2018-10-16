@@ -46,3 +46,27 @@ def detalhes_solicitacao(request, pk):
     return render(request, 'detalhes_solicitacao.html', {
         'detalhes': detalhes,
     })
+
+
+def sobre(request):
+    return render(request, 'sobre.html', {})
+
+
+def editar_empresa(request, pk):
+    empresa = Empresa.objects.get(pk=pk)
+
+    if request.method == "POST":
+        form = EmpresaForm(request.POST, instance=empresa)
+        if form.is_valid:
+            form.save()
+        return HttpResponseRedirect("/")
+    elif request.method == "GET":
+        form = EmpresaForm(instance=empresa)
+
+    context = {'form': form}
+    return render(request, 'cadastro_empresa.html', context)
+
+
+def deletar_cadastro(request, pk):
+    cadastro = Empresa.objects.get(pk=pk)
+    cadastro.delete()
