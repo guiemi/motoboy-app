@@ -9,6 +9,10 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
             integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+            crossorigin="anonymous">
+
+
 
 
 
@@ -57,7 +61,8 @@
                         <th>ID</th>
                         <th>Nome</th>
                         <th>CNPJ</th>
-                        <th>Ações</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
                     </thead>
                     <tbody>
                         {% for cadastro in cadastros %}
@@ -65,9 +70,8 @@
                             <th scope="row">{{cadastro.pk}}</th>
                             <td>{{ cadastro.nome }}</td>
                             <td>{{ cadastro.cnpj }}</td>
-                            <td> <span id="btn-edit" class="btn-acao" value="{{ cadastro.pk }}">Editar</span>
-                                <span id="btn-delete" class="btn-acao" value="{{ cadastro.pk }}">Deletar</span>
-                            </td>
+                            <td><span id="btn-edit" class="btn-acao" value="{{ cadastro.pk }}"><i class="fas fa-edit"></i></span></td>
+                            <td><span id="btn-delete" class="btn-acao" value="{{ cadastro.pk }}"><i class="fas fa-trash"></i></span></td>
                         </tr>
                         {% endfor %}
                     </tbody>
