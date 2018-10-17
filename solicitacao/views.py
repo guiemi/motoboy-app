@@ -3,6 +3,8 @@ from .forms import EmpresaForm, MotoboyForm
 from solicitacao.models import Empresa, Solicitacao
 from django.http import HttpResponseRedirect, HttpResponse
 
+# Páginas principais
+
 
 def index(request):
     cadastros = Empresa.objects.all()
@@ -40,6 +42,11 @@ def solicitacao_motoboy(request):
     return render(request, 'solicitacao_motoboy.html', context)
 
 
+def sobre(request):
+    return render(request, 'sobre.html', {})
+
+
+# Páginas secundárias:
 def detalhes_solicitacao(request, pk):
     detalhes = Solicitacao.objects.get(pk=pk)
 
@@ -48,10 +55,7 @@ def detalhes_solicitacao(request, pk):
     })
 
 
-def sobre(request):
-    return render(request, 'sobre.html', {})
-
-
+# Editar:
 def editar_empresa(request, pk):
     empresa = Empresa.objects.get(pk=pk)
 
@@ -67,6 +71,7 @@ def editar_empresa(request, pk):
     return render(request, 'cadastro_empresa.html', context)
 
 
+# Deletar:
 def deletar_cadastro(request, pk):
     cadastro = Empresa.objects.get(pk=pk)
     cadastro.delete()
