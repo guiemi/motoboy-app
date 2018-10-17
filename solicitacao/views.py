@@ -70,3 +70,4 @@ def editar_empresa(request, pk):
 def deletar_cadastro(request, pk):
     cadastro = Empresa.objects.get(pk=pk)
     cadastro.delete()
+    return HttpResponseRedirect("/")
