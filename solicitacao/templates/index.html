@@ -52,8 +52,9 @@
         <div class="container">
             <h2>Empresas cadastradas</h2>
             <div class="jumbotron">
-                <table>
+                <table class="table">
                     <thead>
+                        <th>ID</th>
                         <th>Nome</th>
                         <th>CNPJ</th>
                         <th>Ações</th>
@@ -61,9 +62,10 @@
                     <tbody>
                         {% for cadastro in cadastros %}
                         <tr>
+                            <th scope="row">{{cadastro.pk}}</th>
                             <td>{{ cadastro.nome }}</td>
                             <td>{{ cadastro.cnpj }}</td>
-                            <td> <span id="btn-edit" class="btn-acao" value="{{ cadastro.pk }}">Editar</span> 
+                            <td> <span id="btn-edit" class="btn-acao" value="{{ cadastro.pk }}">Editar</span>
                                 <span id="btn-delete" class="btn-acao" value="{{ cadastro.pk }}">Deletar</span>
                             </td>
                         </tr>
