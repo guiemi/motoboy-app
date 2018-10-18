@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 
 class Empresa(models.Model):
@@ -7,7 +8,7 @@ class Empresa(models.Model):
 
 
 class Solicitacao(models.Model):
-    data = models.DateField()
+    data = models.DateField(default=date.today)
     solicitante = models.CharField(max_length=30)
     endereco_origem = models.CharField(max_length=50)
     contato_origem = models.CharField(max_length=30)
