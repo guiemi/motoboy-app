@@ -49,6 +49,8 @@
         <div class="container">
             <h2>Empresas cadastradas</h2>
             <div class="jumbotron">
+
+                <!-- Tabela de empresas cadastradas -->
                 <table class="table">
                     <thead>
                         <th>ID</th>
@@ -75,11 +77,18 @@
             <h2>Solicitações Realizadas</h2>
 
             <div class="jumbotron">
-                <table class="table">
+                <!-- Caixa de busca -->
+                <p><input type="text" value="{{ solicitacao.pk }}" id="busca-empresa" onkeyup="buscaEmpresa()"
+                        placeholder="Filtrar por empresa"></p>
+
+                <!-- Tabela de solicitações realizadas -->
+                <table id="tabela-solicitacoes" class="table">
+                    <thead>
+                    </thead>
                     <thead>
                         <th>Nº solicit.</th>
                         <th>Data de solicitação</th>
-                        <th>Empresa Solicitada</th>
+                        <th id=>Empresa Solicitada</th>
                         <th>Nome do Solicitante</th>
                         <th>Detalhes</th>
                     </thead>
@@ -90,10 +99,8 @@
                             <td>{{ solicitacao.data }}</td>
                             <td>{{ solicitacao.empresa }}</td>
                             <td>{{ solicitacao.solicitante }}</td>
-                            <td><button id="btn-detalhes-solicitacao" value="{{ solicitacao.pk }}" type="button" class="btn btn-outline-info">Mostrar detalhes</button>
-                            </td>
+                            <td><a href="{% url 'detalhes_solicitacao' pk=solicitacao.pk %}">Expandir detalhes</td>
                         </tr>
-
                         {% endfor %}
                     </tbody>
                 </table>
@@ -123,11 +130,36 @@
                 window.location.pathname = "deletar_cadastro/" + id_empresa;
             });
 
-            $("#btn-detalhes-solicitacao").click(function (){
+            $("#btn-detalhes-solicitacao").click(function () {
                 var id_solicitacao = $(this).attr("value");
-                window.location.pathname = '/detalhes_solicitacao/' + id_solicitacao;
-            })
-            
+                window.location.pathname = "/detalhes_solicitacao/" + id_solicitacao;
+            });
+        </script>
+
+        <script>
+
+
+            $('#busca-empresa').keyup(function(){
+                var search = $(this).val();
+
+                $('table tbody tr').hide();
+
+                var len = $('table tbody tr:not(.notfound) td:nth-child(2):contains("'+search+'")').length;
+
+                if(len > 0){
+                    $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
+                        $(this).closest('tr').show();
+                    });
+                }else{
+                    $('.notfound').show();
+                }
+            });
+
+            $.expr[":"].contains = $.expr.createPseudo(function(arg) {
+                return function( elem ) {
+                  return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+                };
+             });
         </script>
     </body>
 
