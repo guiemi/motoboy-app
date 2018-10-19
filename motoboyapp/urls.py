@@ -27,5 +27,6 @@ urlpatterns = [
     path('sobre/', views.sobre, name='sobre'),
     path('editar_empresa/<int:pk>', views.editar_empresa),
     path('deletar_cadastro/<int:pk>', views.deletar_cadastro, name='deletar_cadastro'),
+    path('deletar_solicitacao/<int:pk>', views.deletar_solicitacao, name='deletar_solicitacao'),
     path('editar_solicitacao/<int:pk>', views.editar_solicitacao, name='editar_solicitacao'),
 ]
