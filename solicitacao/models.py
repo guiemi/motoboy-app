@@ -6,8 +6,13 @@ class Empresa(models.Model):
     nome = models.CharField(max_length=30)
     cnpj = models.CharField(max_length=25)
 
+    def __str__(self):
+        return self.nome
+
 
 class Solicitacao(models.Model):
+    empresa = models.ForeignKey(Empresa, on_delete="CASCADE", related_name='empresa_id')
+
     data = models.DateField(default=date.today)
     solicitante = models.CharField(max_length=30)
     endereco_origem = models.CharField(max_length=50)
@@ -16,3 +21,5 @@ class Solicitacao(models.Model):
     endereco_destino = models.CharField(max_length=30)
     contato_destino = models.CharField(max_length=30)
     observacoes = models.TextField()
+
+
