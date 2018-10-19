@@ -73,7 +73,7 @@
             <h2>Solicitações Realizadas</h2>
             <div class="jumbotron">
                 {% for solicitacao in solicitacoes %}
-                <p> Solicitante: <a href="{% url 'detalhes_solicitacao' pk=solicitacao.pk %}">{{solicitacao.solicitante}}</a></p>
+                <p> Solicitação nº {{ solicitacao.pk }}: <a href="{% url 'detalhes_solicitacao' pk=solicitacao.pk %}">{{solicitacao.solicitante}}</a></p>
                 {% endfor %}
             </div>
         </div>

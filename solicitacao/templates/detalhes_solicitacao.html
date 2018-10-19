@@ -81,6 +81,7 @@
                     </tbody>
                 </table>
                 <button id="btn-edit-solicitacao" value="{{ detalhes.pk }}" type="button" class="btn btn-primary">Editar</button>
+                <button id="btn-deletar-solicitacao" value="{{ detalhes.pk }}" type="button" class="btn btn-danger">Excluir solicitação</button>
             </div>
         </div>
 
@@ -92,6 +93,11 @@
             $("#btn-edit-solicitacao").click(function () {
                 var id_editar_solicitacao = $(this).attr("value");
                 window.location.pathname = "editar_solicitacao/" + id_editar_solicitacao;
+            })
+
+            $("#btn-deletar-solicitacao").click(function () {
+                var id_deletar_solicitacao = $(this).attr("value");
+                window.location.pathname = "deletar_solicitacao/" + id_deletar_solicitacao;
             })
         </script>
 

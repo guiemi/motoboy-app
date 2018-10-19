@@ -93,3 +93,8 @@ def deletar_cadastro(request, pk):
     cadastro = Empresa.objects.get(pk=pk)
     cadastro.delete()
     return HttpResponseRedirect("/")
+
+def deletar_solicitacao(request, pk):
+    cadastro = Solicitacao.objects.get(pk=pk)
+    cadastro.delete()
+    return HttpResponseRedirect("/")
