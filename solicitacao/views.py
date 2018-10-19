@@ -80,7 +80,7 @@ def editar_solicitacao(request, pk):
         form = MotoboyForm(request.POST, instance=solicitacao)
         if form.is_valid:
             form.save()
-        return redirect('/detalhes_solicitacao/{}'.format(solicitacao.pk))
+        return redirect(f"/detalhes_solicitacao/{solicitacao.pk}")
     elif request.method == "GET":
         form = MotoboyForm(instance=solicitacao)
 
