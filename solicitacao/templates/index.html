@@ -70,7 +70,35 @@
                     </tbody>
                 </table>
             </div>
+
+
             <h2>Solicitações Realizadas</h2>
+
+            <div class="jumbotron">
+                <table class="table">
+                    <thead>
+                        <th>Nº solicit.</th>
+                        <th>Data de solicitação</th>
+                        <th>Empresa Solicitada</th>
+                        <th>Nome do Solicitante</th>
+                        <th>Detalhes</th>
+                    </thead>
+                    <tbody>
+                        {% for solicitacao in solicitacoes %}
+                        <tr>
+                            <td>{{ solicitacao.pk }}</td>
+                            <td>{{ solicitacao.data }}</td>
+                            <td>{{ solicitacao.empresa }}</td>
+                            <td>{{ solicitacao.solicitante }}</td>
+                            <td><button id="btn-detalhes-solicitacao" value="{{ solicitacao.pk }}" type="button" class="btn btn-outline-info">Mostrar detalhes</button>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
             <div class="jumbotron">
                 {% for solicitacao in solicitacoes %}
                 <p> Solicitação nº {{ solicitacao.pk }}: <a href="{% url 'detalhes_solicitacao' pk=solicitacao.pk %}">{{solicitacao.solicitante}}</a></p>
@@ -94,6 +122,12 @@
                 var id_empresa = $(this).attr("value");
                 window.location.pathname = "deletar_cadastro/" + id_empresa;
             });
+
+            $("#btn-detalhes-solicitacao").click(function (){
+                var id_solicitacao = $(this).attr("value");
+                window.location.pathname = '/detalhes_solicitacao/' + id_solicitacao;
+            })
+            
         </script>
     </body>
 
