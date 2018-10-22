@@ -10,8 +10,5 @@ temp2.csv
 Temp*
 celerybeat-schedule
 *.vscode
-/db/*.sqlite3
-db.sqlite3
 static/
 .DS_Store
-*.db
