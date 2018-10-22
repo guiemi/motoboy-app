@@ -17,6 +17,8 @@ def index(request):
         'solicitacoes': solicitacoes,
     })
 
+def login(request):
+    return render(request, 'login.html')
 
 def cadastro_empresa(request):
     if request.method == 'POST':
@@ -84,7 +86,7 @@ def editar_solicitacao(request, pk):
     elif request.method == "GET":
         form = MotoboyForm(instance=solicitacao)
 
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'solicitacao_motoboy.html', context)
 
 
@@ -93,6 +95,7 @@ def deletar_cadastro(request, pk):
     cadastro = Empresa.objects.get(pk=pk)
     cadastro.delete()
     return HttpResponseRedirect("/")
+
 
 def deletar_solicitacao(request, pk):
     cadastro = Solicitacao.objects.get(pk=pk)
