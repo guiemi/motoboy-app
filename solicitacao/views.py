@@ -11,14 +11,16 @@ from django.urls import reverse
 def index(request):
     cadastros = Empresa.objects.all()
     solicitacoes = Solicitacao.objects.all()
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        return render(request, 'index.html', {
+            'cadastros': cadastros,
+            'solicitacoes': solicitacoes,
+        })
 
-    return render(request, 'index.html', {
-        'cadastros': cadastros,
-        'solicitacoes': solicitacoes,
-    })
-
-def login(request):
-    return render(request, 'login.html')
+# def login(request):
+#     return render(request, 'login.html')
 
 def cadastro_empresa(request):
     if request.method == 'POST':
