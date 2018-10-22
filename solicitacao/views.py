@@ -11,16 +11,17 @@ from django.urls import reverse
 def index(request):
     cadastros = Empresa.objects.all()
     solicitacoes = Solicitacao.objects.all()
+
+    #  se o usuário está deslogado:
     if not request.user.is_authenticated:
-        return redirect('login')
-    else:
+        return redirect('login')  # redireciona para a tela de login
+    else:  # caso contrário, renderiza normalmente o index
         return render(request, 'index.html', {
             'cadastros': cadastros,
             'solicitacoes': solicitacoes,
         })
 
-# def login(request):
-#     return render(request, 'login.html')
+
 
 def cadastro_empresa(request):
     if request.method == 'POST':
@@ -49,8 +50,8 @@ def solicitacao_motoboy(request):
 
 
 def sobre(request):
-    return render(request, 'sobre.html', {})
-
+    context = {}
+    return render(request, 'sobre.html', context)
 
 # Páginas secundárias:
 def detalhes_solicitacao(request, pk):
