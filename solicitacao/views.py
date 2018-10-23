@@ -32,7 +32,7 @@ def cadastro_empresa(request):
     else:
         form = EmpresaForm()
 
-    context = {"form": form}
+    context = {"form": form, "cadastro_active": "active"}
     return render(request, 'cadastro_empresa.html', context)
 
 
@@ -45,12 +45,12 @@ def solicitacao_motoboy(request):
     else:
         form = MotoboyForm()
 
-    context = {"form": form}
+    context = {"form": form, "solicitacao_active": "active"}
     return render(request, 'solicitacao_motoboy.html', context)
 
 
 def sobre(request):
-    context = {}
+    context = {"sobre_active": "active"}
     return render(request, 'sobre.html', context)
 
 # Páginas secundárias:
