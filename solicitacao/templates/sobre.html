@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html>
+{% extends "layouts/base.html" %}
 
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Page Title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-            crossorigin="anonymous">
+{% block title %}
+<h1 class="text-center">Isto é uma página de about</h1>
+{% endblock title %}
 
-    </head>
-
-    <body>
-        {% extends "layouts/base.html" %}
-
-        {% block content %}
-        <h1>Olá da página de about</h1>
-        {% endblock content %}
-    </body>
-
-</html>
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h1>Conteúdo</h1>
+    </div>
+</div>
+{% endblock content %}

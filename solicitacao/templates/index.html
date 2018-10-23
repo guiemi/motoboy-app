@@ -1,160 +1,123 @@
-<!DOCTYPE html>
-<html>
+{% extends "layouts/base.html" %}
 
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Index</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-            crossorigin="anonymous">
+{% block title %}
+<h1 class="text-center" "border border-primary">Solicitação de Motoboy</h1>
+{% endblock title %}
 
+{% block content %}
+<div class="container">
+    <h2>Empresas cadastradas</h2>
+    <div class="jumbotron">
 
+        <!-- Tabela de empresas cadastradas -->
+        <table class="table">
+            <thead>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CNPJ</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </thead>
+            <tbody>
+                {% for cadastro in cadastros %}
+                <tr>
+                    <th scope="row">{{cadastro.pk}}</th>
+                    <td>{{ cadastro.nome }}</td>
+                    <td>{{ cadastro.cnpj }}</td>
+                    <td><span id="btn-edit" class="btn-acao" value="{{ cadastro.pk }}"><i class="fas fa-edit"></i></span></td>
+                    <td><span id="btn-delete" class="btn-acao" value="{{ cadastro.pk }}"><i class="fas fa-trash"></i></span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
+    <h2>Solicitações Realizadas</h2>
 
+    <div class="jumbotron">
+        <!-- Caixa de busca -->
+        <p><input type="text" value="{{ solicitacao.pk }}" id="busca-empresa" onkeyup="buscaEmpresa()" placeholder="Filtrar por empresa"></p>
 
-        <style>
-            .btn-acao:hover {
-                cursor: pointer;
-            }
-        </style>
-    </head>
+        <!-- Tabela de solicitações realizadas -->
+        <table id="tabela-solicitacoes" class="table">
+            <thead>
+            </thead>
+            <thead>
+                <th>Nº solicit.</th>
+                <th>Data de solicitação</th>
+                <th id=>Empresa Solicitada</th>
+                <th>Nome do Solicitante</th>
+                <th>Detalhes</th>
+            </thead>
+            <tbody>
+                {% for solicitacao in solicitacoes %}
+                <tr>
+                    <td>{{ solicitacao.pk }}</td>
+                    <td>{{ solicitacao.data }}</td>
+                    <td>{{ solicitacao.empresa }}</td>
+                    <td>{{ solicitacao.solicitante }}</td>
+                    <td><a href="{% url 'detalhes_solicitacao' pk=solicitacao.pk %}">Expandir detalhes</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
 
-    <body>
-        <nav class="navbar navbar-expand navbar-dark bg-dark">
-            <div class="container">
-                <a href="/"><img src="http://www.vertcap.com.br/wp-content/uploads/2016/08/logo-vert-white.png" alt="Vert"></a>
-
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/cadastro_empresa">Cadastrar Empresa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/solicitacao_motoboy">Solicitar Motoboy</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/sobre">Sobre</a>
-                    </li>
-
-                </ul>
-
-            </div>
-        </nav>
-
-        <h1 class="text-center" "border border-primary">Solicitação de Motoboy</h1>
-
-        <div class="container">
-            <h2>Empresas cadastradas</h2>
-            <div class="jumbotron">
-
-                <!-- Tabela de empresas cadastradas -->
-                <table class="table">
-                    <thead>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>CNPJ</th>
-                        <th>Editar</th>
-                        <th>Excluir</th>
-                    </thead>
-                    <tbody>
-                        {% for cadastro in cadastros %}
-                        <tr>
-                            <th scope="row">{{cadastro.pk}}</th>
-                            <td>{{ cadastro.nome }}</td>
-                            <td>{{ cadastro.cnpj }}</td>
-                            <td><span id="btn-edit" class="btn-acao" value="{{ cadastro.pk }}"><i class="fas fa-edit"></i></span></td>
-                            <td><span id="btn-delete" class="btn-acao" value="{{ cadastro.pk }}"><i class="fas fa-trash"></i></span></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-
-
-            <h2>Solicitações Realizadas</h2>
-
-            <div class="jumbotron">
-                <!-- Caixa de busca -->
-                <p><input type="text" value="{{ solicitacao.pk }}" id="busca-empresa" onkeyup="buscaEmpresa()"
-                        placeholder="Filtrar por empresa"></p>
-
-                <!-- Tabela de solicitações realizadas -->
-                <table id="tabela-solicitacoes" class="table">
-                    <thead>
-                    </thead>
-                    <thead>
-                        <th>Nº solicit.</th>
-                        <th>Data de solicitação</th>
-                        <th id=>Empresa Solicitada</th>
-                        <th>Nome do Solicitante</th>
-                        <th>Detalhes</th>
-                    </thead>
-                    <tbody>
-                        {% for solicitacao in solicitacoes %}
-                        <tr>
-                            <td>{{ solicitacao.pk }}</td>
-                            <td>{{ solicitacao.data }}</td>
-                            <td>{{ solicitacao.empresa }}</td>
-                            <td>{{ solicitacao.solicitante }}</td>
-                            <td><a href="{% url 'detalhes_solicitacao' pk=solicitacao.pk %}">Expandir detalhes</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+{% block style %}
+<style>
+    .btn-acao:hover {
+        cursor: pointer;
+    }
+</style>
+{% endblock style %}
 
 
-        <!-- JQuery -->
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+{% block scripts %}
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
 
-        <script>
-            $("span" + "#btn-edit").click(function () {
-                var id_empresa = $(this).attr("value");
-                window.location.pathname = "/editar_empresa/" + id_empresa;
+<script>
+    $("span" + "#btn-edit").click(function () {
+        var id_empresa = $(this).attr("value");
+        window.location.pathname = "/editar_empresa/" + id_empresa;
 
+    });
+
+    $("span" + "#btn-delete").click(function () {
+        var id_empresa = $(this).attr("value");
+        window.location.pathname = "deletar_cadastro/" + id_empresa;
+    });
+
+    $("#btn-detalhes-solicitacao").click(function () {
+        var id_solicitacao = $(this).attr("value");
+        window.location.pathname = "/detalhes_solicitacao/" + id_solicitacao;
+    });
+</script>
+
+<script>
+    $('#busca-empresa').keyup(function () {
+        var search = $(this).val();
+
+        $('table tbody tr').hide();
+
+        var len = $('table tbody tr:not(.notfound) td:nth-child(2):contains("' + search + '")').length;
+
+        if (len > 0) {
+            $('table tbody tr:not(.notfound) td:contains("' + search + '")').each(function () {
+                $(this).closest('tr').show();
             });
+        } else {
+            $('.notfound').show();
+        }
+    });
 
-            $("span" + "#btn-delete").click(function () {
-                var id_empresa = $(this).attr("value");
-                window.location.pathname = "deletar_cadastro/" + id_empresa;
-            });
-
-            $("#btn-detalhes-solicitacao").click(function () {
-                var id_solicitacao = $(this).attr("value");
-                window.location.pathname = "/detalhes_solicitacao/" + id_solicitacao;
-            });
-        </script>
-
-        <script>
-
-
-            $('#busca-empresa').keyup(function(){
-                var search = $(this).val();
-
-                $('table tbody tr').hide();
-
-                var len = $('table tbody tr:not(.notfound) td:nth-child(2):contains("'+search+'")').length;
-
-                if(len > 0){
-                    $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
-                        $(this).closest('tr').show();
-                    });
-                }else{
-                    $('.notfound').show();
-                }
-            });
-
-            $.expr[":"].contains = $.expr.createPseudo(function(arg) {
-                return function( elem ) {
-                  return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
-                };
-             });
-        </script>
-    </body>
-
-</html>
+    $.expr[":"].contains = $.expr.createPseudo(function (arg) {
+        return function (elem) {
+            return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+        };
+    });
+</script>
+{% endblock scripts %}

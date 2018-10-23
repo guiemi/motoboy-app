@@ -1,110 +1,72 @@
-<!DOCTYPE html>
-<html>
+{% extends "layouts/base.html" %}
 
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Detalhes Solicitação</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+{% block title %}
+<h1 class="text-center" "border border-primary">Detalhes da solicitação nº: {{ detalhes.pk }}</h1>
+{% endblock title %}
 
-        <style>
-            .btn-acao:hover {
-                    cursor: pointer;
-                }
-        </style>
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Empresa</td>
+                    <td>{{ detalhes.empresa }}</td>
+                </tr>
+                <tr>
+                    <td>Solicitante</td>
+                    <td>{{ detalhes.solicitante }}</td>
+                </tr>
+                <tr>
+                    <td>Data</td>
+                    <td>{{ detalhes.data }}</td>
+                </tr>
+                <tr>
+                    <td>Endereço de origem</td>
+                    <td>{{ detalhes.endereco_origem }}</td>
+                </tr>
+                <tr>
+                    <td>Contato de origem</td>
+                    <td>{{ detalhes.contato_origem }}</td>
+                </tr>
+                <tr>
+                    <td>Endereço de destino</td>
+                    <td>{{ detalhes.endereco_destino }}</td>
+                </tr>
+                <tr>
+                    <td>Contato de destino</td>
+                    <td>{{ detalhes.contato_destino }}</td>
+                </tr>
+                <tr>
+                    <td>Serviço</td>
+                    <td>{{ detalhes.servico }}</td>
+                </tr>
+                <tr>
+                    <td>Observações</td>
+                    <td>{{ detalhes.observacoes }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="btn-edit-solicitacao" value="{{ detalhes.pk }}" type="button" class="btn btn-primary">Editar</button>
+        <button id="btn-deletar-solicitacao" value="{{ detalhes.pk }}" type="button" class="btn btn-danger">Excluir
+            solicitação</button>
+    </div>
 
 
-    </head>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-        <div class="container">
-            <a href="/"><img src="http://www.vertcap.com.br/wp-content/uploads/2016/08/logo-vert-white.png" alt=""></a>
+    <script>
+        $("#btn-edit-solicitacao").click(function () {
+            var id_editar_solicitacao = $(this).attr("value");
+            window.location.pathname = "editar_solicitacao/" + id_editar_solicitacao;
+        })
 
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/cadastro_empresa">Cadastrar Empresa</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/solicitacao_motoboy">Solicitar Motoboy</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/sobre">Sobre</a>
-                </li>
+        $("#btn-deletar-solicitacao").click(function () {
+            var id_deletar_solicitacao = $(this).attr("value");
+            window.location.pathname = "deletar_solicitacao/" + id_deletar_solicitacao;
+        })
+    </script>
 
-            </ul>
-
-        </div>
-    </nav>
-
-
-    <body>
-        <h1 class="text-center" "border border-primary">Detalhes da solicitação nº: {{ detalhes.pk }}</h1>
-
-        <div class="container">
-            <div class="jumbotron">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td>Empresa</td>
-                            <td>{{ detalhes.empresa }}</td>
-                        </tr>
-                        <tr>
-                            <td>Solicitante</td>
-                            <td>{{ detalhes.solicitante }}</td>
-                        </tr>
-                        <tr>
-                            <td>Data</td>
-                            <td>{{ detalhes.data }}</td>
-                        </tr>
-                        <tr>
-                            <td>Endereço de origem</td>
-                            <td>{{ detalhes.endereco_origem }}</td>
-                        </tr>
-                        <tr>
-                            <td>Contato de origem</td>
-                            <td>{{ detalhes.contato_origem }}</td>
-                        </tr>
-                        <tr>
-                            <td>Endereço de destino</td>
-                            <td>{{ detalhes.endereco_destino }}</td>
-                        </tr>
-                        <tr>
-                            <td>Contato de destino</td>
-                            <td>{{ detalhes.contato_destino }}</td>
-                        </tr>
-                        <tr>
-                            <td>Serviço</td>
-                            <td>{{ detalhes.servico }}</td>
-                        </tr>
-                        <tr>
-                            <td>Observações</td>
-                            <td>{{ detalhes.observacoes }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button id="btn-edit-solicitacao" value="{{ detalhes.pk }}" type="button" class="btn btn-primary">Editar</button>
-                <button id="btn-deletar-solicitacao" value="{{ detalhes.pk }}" type="button" class="btn btn-danger">Excluir solicitação</button>
-            </div>
-        </div>
-
-        <!-- JQuery -->
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-
-        <script>
-            $("#btn-edit-solicitacao").click(function () {
-                var id_editar_solicitacao = $(this).attr("value");
-                window.location.pathname = "editar_solicitacao/" + id_editar_solicitacao;
-            })
-
-            $("#btn-deletar-solicitacao").click(function () {
-                var id_deletar_solicitacao = $(this).attr("value");
-                window.location.pathname = "deletar_solicitacao/" + id_deletar_solicitacao;
-            })
-        </script>
-
-    </body>
-
-</html>
+{% endblock content %}
