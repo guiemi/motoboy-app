@@ -3,26 +3,23 @@ from .forms import EmpresaForm, MotoboyForm
 from solicitacao.models import Empresa, Solicitacao
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-
+from django.contrib.auth.decorators import login_required
 
 # Páginas principais
 
 
+@login_required(login_url='login')  # Redir. p/ login usuário deslogado
 def index(request):
     cadastros = Empresa.objects.all()
     solicitacoes = Solicitacao.objects.all()
 
-    #  se o usuário está deslogado:
-    if not request.user.is_authenticated:
-        return redirect('login')  # redireciona para a tela de login
-    else:  # caso contrário, renderiza normalmente o index
-        return render(request, 'index.html', {
-            'cadastros': cadastros,
-            'solicitacoes': solicitacoes,
-        })
+    return render(request, 'index.html', {
+        'cadastros': cadastros,
+        'solicitacoes': solicitacoes,
+    })
 
 
-
+@login_required(login_url='login')  # Redir. p/ login usuário deslogado
 def cadastro_empresa(request):
     if request.method == 'POST':
         form = EmpresaForm(request.POST)
@@ -36,6 +33,7 @@ def cadastro_empresa(request):
     return render(request, 'cadastro_empresa.html', context)
 
 
+@login_required(login_url='login')  # Redir. p/ login usuário deslogado
 def solicitacao_motoboy(request):
     if request.method == 'POST':
         form = MotoboyForm(request.POST)
@@ -54,6 +52,9 @@ def sobre(request):
     return render(request, 'sobre.html', context)
 
 # Páginas secundárias:
+
+
+@login_required(login_url='login')  # Redir. p/ login usuário deslogado
 def detalhes_solicitacao(request, pk):
     detalhes = Solicitacao.objects.get(pk=pk)
 
@@ -63,6 +64,7 @@ def detalhes_solicitacao(request, pk):
 
 
 # Editar:
+@login_required(login_url='login')  # Redir. p/ login usuário deslogado
 def editar_empresa(request, pk):
     empresa = Empresa.objects.get(pk=pk)
 
@@ -78,6 +80,7 @@ def editar_empresa(request, pk):
     return render(request, 'cadastro_empresa.html', context)
 
 
+@login_required(login_url='login')  # Redir. p/ login usuário deslogado
 def editar_solicitacao(request, pk):
     solicitacao = Solicitacao.objects.get(pk=pk)
 
