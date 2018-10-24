@@ -13,9 +13,11 @@ def index(request):
     cadastros = Empresa.objects.all()
     solicitacoes = Solicitacao.objects.all()
 
+
     return render(request, 'index.html', {
         'cadastros': cadastros,
         'solicitacoes': solicitacoes,
+        'user': request.user.username,
     })
 
 

@@ -1,7 +1,7 @@
 {% extends "layouts/base.html" %}
 
 {% block title %}
-<h1 class="text-center" "border border-primary">Solicitação de Motoboy</h1>
+<h1 class="text-center">Usuário: {{ user }} </h1>
 {% endblock title %}
 
 {% block content %}
@@ -36,7 +36,7 @@
 
     <div class="jumbotron">
         <!-- Caixa de busca -->
-        <p><input type="text" value="{{ solicitacao.pk }}" id="busca-empresa" onkeyup="buscaEmpresa()" placeholder="Filtrar por empresa"></p>
+        <p><input type="text" value="{{ solicitacao.pk }}" id="busca-empresa" onkeyup="buscaEmpresa()" placeholder="Filtrar por empresa solicitada"></p>
 
         <!-- Tabela de solicitações realizadas -->
         <table id="tabela-solicitacoes" class="table">
