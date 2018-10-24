@@ -140,3 +140,8 @@ DATE_INPUT_FORMATS = [
 
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'login'
+
+
+# Configuração do django-crispy-form:
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
