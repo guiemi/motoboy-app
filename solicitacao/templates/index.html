@@ -43,10 +43,10 @@
             <thead>
             </thead>
             <thead>
-                <th>Nº solicit.</th>
+                <th>ID</th>
                 <th>Data de solicitação</th>
                 <th id=>Empresa Solicitada</th>
-                <th>Nome do Solicitante</th>
+                <th>Solicitante</th>
                 <th>Detalhes</th>
             </thead>
             <tbody>
@@ -56,7 +56,7 @@
                     <td>{{ solicitacao.data }}</td>
                     <td>{{ solicitacao.empresa }}</td>
                     <td>{{ solicitacao.solicitante }}</td>
-                    <td><a href="{% url 'detalhes_solicitacao' pk=solicitacao.pk %}">Expandir detalhes</td>
+                    <td><a href="{% url 'detalhes_solicitacao' pk=solicitacao.pk %}" class="btn btn-outline-info">Detalhes</td>
                 </tr>
                 {% endfor %}
             </tbody>
