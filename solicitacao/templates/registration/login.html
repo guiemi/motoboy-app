@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load crispy_forms_tags %}
 <html>
 
     <head>
@@ -41,9 +42,11 @@
             <div class="jumbotron">
                 <form class="text-center" method="post" novalidate>
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {{ form|crispy }}
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
+
+            </div>
             </div>
 
         </div>
