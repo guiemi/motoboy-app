@@ -7,10 +7,11 @@ class EmpresaForm(forms.ModelForm):
     class Meta:
         model = Empresa
         # fields = '__all__'
-        fields = ('nome', 'cnpj')
+        fields = ('nome', 'cnpj', 'data')
         labels = {
             'nome': _('Nome'),
             'cnpj': _('CNPJ'),
+            'data': _('Data'),
         }
 
 
