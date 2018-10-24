@@ -5,6 +5,8 @@ from datetime import date
 class Empresa(models.Model):
     nome = models.CharField(max_length=30)
     cnpj = models.CharField(max_length=25, unique=True)
+    '''O 'unique=True' impede CNPJs duplicados
+    '''
 
     def __str__(self):
         return self.nome

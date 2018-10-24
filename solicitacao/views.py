@@ -13,7 +13,6 @@ def index(request):
     cadastros = Empresa.objects.all()
     solicitacoes = Solicitacao.objects.all()
 
-
     return render(request, 'index.html', {
         'cadastros': cadastros,
         'solicitacoes': solicitacoes,
@@ -99,12 +98,14 @@ def editar_solicitacao(request, pk):
 
 
 # Deletar:
+@login_required(login_url='login')  # Redir. p/ login usuário deslogado
 def deletar_cadastro(request, pk):
     cadastro = Empresa.objects.get(pk=pk)
     cadastro.delete()
     return HttpResponseRedirect("/")
 
 
+@login_required(login_url='login')  # Redir. p/ login usuário deslogado
 def deletar_solicitacao(request, pk):
     cadastro = Solicitacao.objects.get(pk=pk)
     cadastro.delete()
