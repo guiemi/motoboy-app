@@ -13,17 +13,23 @@
 
     <body>
         {% block navbar %}
-        <!-- Navbar personalizada -->
         <nav class="navbar navbar-expand navbar-dark bg-dark">
-            <div class="container">
-                <a href="#"><img src="http://www.vertcap.com.br/wp-content/uploads/2016/08/logo-vert-white.png" alt="Vert"></a>
 
+            <div class="container">
+                <!-- Botões à esquerda -->
                 <ul class="navbar-nav">
-                    <li class="nav-item {{ sobre_active }}" ç>
-                        <a class="nav-link" href="/sobre">Sobre</a>
-                    </li>
+                    <!-- Logo da VERT -->
+                    <a class="navbar-brand" href="/"><img src="http://www.vertcap.com.br/wp-content/uploads/2016/08/logo-vert-white.png"
+                            alt=""></a>
                 </ul>
 
+                <ul class="navbar-nav">
+                    <!-- Botões à direita -->
+                    <li class="nav-item {{ sobre_active }}">
+                        <a class="nav-link" href="/sobre">Sobre</a>
+                    </li>
+
+                </ul>
             </div>
         </nav>
         {% endblock navbar %}
