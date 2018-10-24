@@ -36,7 +36,13 @@
 
     <div class="jumbotron">
         <!-- Caixa de busca -->
-        <p><input type="text" value="{{ solicitacao.pk }}" id="busca-empresa" onkeyup="buscaEmpresa()" placeholder="Filtrar por empresa solicitada"></p>
+        <div class="input-group">
+            <form class="form-inline">
+                <i class="fa fa-search"></i>
+                <input class="form-control ml-2" type="text" value="{{ solicitacao.pk }}" id="busca-empresa" onkeyup="buscaEmpresa()" placeholder="Filtrar por empresa solicitada">
+            </form>
+
+        </div>
 
         <!-- Tabela de solicitações realizadas -->
         <table id="tabela-solicitacoes" class="table">
