@@ -15,7 +15,7 @@ class Empresa(models.Model):
 class Solicitacao(models.Model):
     class Meta:
         verbose_name_plural = "Solicitações"  # Mostra plural corredo no '/admin'
-
+    
     empresa = models.ForeignKey(Empresa, on_delete="CASCADE", related_name='empresa_id')
 
     data = models.DateField(default=date.today)
@@ -27,4 +27,5 @@ class Solicitacao(models.Model):
     contato_destino = models.CharField(max_length=30)
     observacoes = models.TextField()
 
-
+    def __str__(self):
+        return (f"Empresa solicitada: {self.empresa}")  # método de classe
