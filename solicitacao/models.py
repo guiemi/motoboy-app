@@ -14,9 +14,9 @@ class Empresa(models.Model):
 
 class Solicitacao(models.Model):
     class Meta:
-        verbose_name_plural = "Solicitações"  # Mostra plural corredo no '/admin'
+        verbose_name_plural = "Solicitações"  # Mostra plural correto no '/admin'
     
-    empresa = models.ForeignKey(Empresa, on_delete="CASCADE", related_name='empresa_id')
+    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='empresa_id')
 
     data = models.DateField(default=date.today)
     solicitante = models.CharField(max_length=30)
